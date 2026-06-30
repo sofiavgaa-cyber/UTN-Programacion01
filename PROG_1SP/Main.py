@@ -1,4 +1,4 @@
-from funciones import *
+from Funciones import *
 
 def menu():
     lista_estudiantes = []
