@@ -2,7 +2,7 @@ import json
 import csv
 
 # ==========================================
-# VALIDACIONES (Nota 4)
+# VALIDACIONES
 # ==========================================
 
 def validar_genero(genero: str) -> bool:

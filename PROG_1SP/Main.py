@@ -26,8 +26,10 @@ def menu():
             continue
 
         if opcion == "1":
-            lista_estudiantes = leer_json("data_sp.json")
-            if lista_estudiantes:
+            # Usamos una lista auxiliar para no pisar la anterior si el archivo falla
+            lista_auxiliar = leer_json("data_sp.json")
+            if lista_auxiliar:
+                lista_estudiantes = lista_auxiliar
                 datos_cargados = True
                 print(f"Se cargaron {len(lista_estudiantes)} estudiantes desde el JSON.")
                 
