@@ -1,0 +1,20 @@
+{
+    "estudiantes": [
+        {
+            "legajo": 1,
+            "ape_nom": "Sofia Vega",
+            "genero": "F",
+            "pp": 10,
+            "sp": 6,
+            "prom": 0.0
+        },
+        {
+            "legajo": 2,
+            "ape_nom": "Sofia Vega",
+            "genero": "M",
+            "pp": 4,
+            "sp": 6,
+            "prom": 0.0
+        }
+    ]
+}

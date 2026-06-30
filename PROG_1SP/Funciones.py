@@ -75,7 +75,7 @@ def cargar_estudiante_manual() -> dict:
 
 
 # ==========================================
-# FUNCIONES DE MOSTRAR (Nota 5)
+# FUNCIONES DE MOSTRAR 
 # ==========================================
 
 def mostrar_un_estudiante(estudiante: dict):
