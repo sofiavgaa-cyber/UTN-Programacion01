@@ -27,7 +27,7 @@ def menu():
 
         if opcion == "1":
             # Usamos una lista auxiliar para no pisar la anterior si el archivo falla
-            lista_auxiliar = leer_json("data_sp.json")
+            lista_auxiliar = leer_json("data_sp_actualizado.json")
             if lista_auxiliar:
                 lista_estudiantes = lista_auxiliar
                 datos_cargados = True
@@ -63,7 +63,7 @@ def menu():
             exportar_a_csv(lista_estudiantes, "data_sp.csv")
             
         elif opcion == "10":
-            print("Saliendo del programa. ¡Éxitos en el examen!")
+            print("Saliendo del programa.")
             break
         else:
             print("Opción inválida. Intente de nuevo.")

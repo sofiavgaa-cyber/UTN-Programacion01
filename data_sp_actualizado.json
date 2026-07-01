@@ -4,17 +4,25 @@
             "legajo": 1,
             "ape_nom": "Sofia Vega",
             "genero": "F",
-            "pp": 10,
-            "sp": 6,
-            "prom": 0.0
+            "pp": 5,
+            "sp": 5,
+            "prom": 5.0
         },
         {
             "legajo": 2,
-            "ape_nom": "Sofia Vega",
+            "ape_nom": "Pepe Ramirez",
             "genero": "M",
-            "pp": 4,
+            "pp": 7,
             "sp": 6,
-            "prom": 0.0
+            "prom": 6.5
+        },
+        {
+            "legajo": 3,
+            "ape_nom": "Maria Paredes",
+            "genero": "F",
+            "pp": 9,
+            "sp": 4,
+            "prom": 6.5
         }
     ]
 }
