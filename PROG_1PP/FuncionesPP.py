@@ -60,13 +60,13 @@ def validar_nota(nota):
 #  FUNCIONES PARA MOSTRAR 
 # ==========================================
 
-def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio): #Muestra un solo estudiante, con o sin promedio
+def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio): # Muestra un solo estudiante, con o sin promedio
     if promedio == None: # La función recibe None si no hay promedio calculado, para no mostrarlo
         print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2)
     else: # Si hay promedio, lo muestra
         print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2, "| Promedio:", promedio)
 
-def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, promedios): #Muestra todos los estudiantes, con o sin promedio
+def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, promedios): # Muestra todos los estudiantes, con o sin promedio
     print("\n--- LISTA DE ESTUDIANTES ---")
     cantidad = len(legajos) # Averigua cuántos elementos hay en la lista de legajos (todas las listas tienen la misma cantidad)
     for i in range(cantidad): 
@@ -83,8 +83,7 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
 # ==========================================
 
 def calcular_promedios(nota_p1, nota_p2, promedios):
-    # Vacia la lista de promedios antes de calcularlos nuevamente 
-    del promedios[:] 
+    # Vacia la lista de promedios antes de calcularlos
     for i in range(len(nota_p1)):
         resultado = (nota_p1[i] + nota_p2[i]) / 2
         promedios.append(resultado) # Guarda el promedio en la lista de promedios
@@ -166,8 +165,9 @@ def buscar_estudiante_por_legajo(legajos, nombres, generos, nota_p1, nota_p2, pr
 
 
 # ==========================================
-# SIMULADOR DE CARGA 
+#  SIMULADOR DE CARGA 
 # ==========================================
+
 def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     # Lista de datos predefinidos   
     lista_l = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 12, 22, 32, 42, 52, 62, 72, 82, 92, 102]
@@ -178,7 +178,7 @@ def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     lista_1 = [8, 4, 7, 10, 5, 6, 9, 2, 7, 8, 4, 6, 7, 5, 8, 9, 3, 4, 10, 6, 7, 8, 9, 4, 5, 6, 7, 8, 9, 10]
     lista_2 = [9, 5, 8, 10, 6, 7, 8, 4, 8, 9, 5, 7, 6, 6, 7, 9, 4, 5, 9, 7, 8, 7, 9, 5, 6, 8, 7, 9, 8, 10]
 
-    # Pasamos los datos individuales usando bucles con .append()
+    # Pasa los datos individuales usando bucles con .append()
     for item in lista_l: legajos.append(item) # .append agrega un elemento al final de la lista
     for item in lista_n: nombres.append(item)
     for item in lista_g: generos.append(item)
