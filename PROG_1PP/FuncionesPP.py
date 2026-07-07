@@ -1,5 +1,5 @@
 # ==========================================
-# 1. VALIDACIONES 
+#  VALIDACIONES 
 # ==========================================
 
 def validar_legajo(legajo):
@@ -31,6 +31,9 @@ def validar_nombre(nombre):
     return True
 
 def validar_genero(genero):
+    # Convertimos lo que ingresó el usuario a mayúsculas
+    genero = genero.upper()
+
     # Solo acepta las letras exactas pedidas
     if genero == "F" or genero == "M" or genero == "X":
         return True
@@ -54,7 +57,7 @@ def validar_nota(nota):
 
 
 # ==========================================
-# 2. FUNCIONES PARA MOSTRAR 
+#  FUNCIONES PARA MOSTRAR 
 # ==========================================
 
 def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio):
@@ -76,7 +79,7 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
 
 
 # ==========================================
-# 3. PROCESAMIENTO DE DATOS Y ENTRADAS
+#  PROCESAMIENTO DE DATOS Y ENTRADAS
 # ==========================================
 
 def calcular_promedios(nota_p1, nota_p2, promedios):
@@ -89,7 +92,7 @@ def calcular_promedios(nota_p1, nota_p2, promedios):
 
 
 # ==========================================
-# 4. ORDENAMIENTO Y BÚSQUEDA
+#  ORDENAMIENTO Y BÚSQUEDA
 # ==========================================
 
 def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2, promedios):
@@ -99,9 +102,9 @@ def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2
             if promedios[j] < promedios[j + 1]:
                 
                 # Intercambio manual usando variables auxiliares una por una
-                aux_prom = promedios[j]
-                promedios[j] = promedios[j + 1]
-                promedios[j + 1] = aux_prom
+                aux_prom = promedios[j]          #  Guarda el promedio actual en el auxiliar
+                promedios[j] = promedios[j + 1]  #  Copia el promedio de al lado en la posición actual (pisando el viejo)
+                promedios[j + 1] = aux_prom      #  Recupera el promedio viejo desde el auxiliar y lo ponemos al lado
                 
                 aux_leg = legajos[j]
                 legajos[j] = legajos[j + 1]
@@ -171,7 +174,7 @@ def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     lista_n = ["Gomez Ana", "Perez Juan", "Lopez Luis", "Diaz Maria", "Paz Jose", "Soto Ines", "Rios Blas", "Vega Rosa", "Cruz Omar", "Roca Hugo",
                "Gomez Elsa", "Perez Raul", "Lopez Alan", "Diaz Sara", "Paz Abel", "Soto Cleo", "Rios Kurt", "Vega Nora", "Cruz Olga", "Roca Axel",
                "Gomez Olga", "Perez Enzo", "Lopez Lola", "Diaz Rene", "Paz Luis", "Soto Jani", "Rios Paul", "Vega Dora", "Cruz Alex", "Roca Yani"]
-    lista_g = ["F", "M", "M", "F", "M", "F", "M", "F", "M", "M", "F", "M", "M", "F", "M", "F", "M", "F", "M", "M", "F", "M", "F", "M", "M", "F", "M", "F", "M", "F"]
+    lista_g = ["F", "M", "M", "F", "M", "F", "M", "X", "M", "M", "F", "M", "M", "F", "X", "F", "M", "F", "M", "X", "F", "M", "F", "M", "M", "F", "M", "F", "M", "F"]
     lista_1 = [8, 4, 7, 10, 5, 6, 9, 2, 7, 8, 4, 6, 7, 5, 8, 9, 3, 4, 10, 6, 7, 8, 9, 4, 5, 6, 7, 8, 9, 10]
     lista_2 = [9, 5, 8, 10, 6, 7, 8, 4, 8, 9, 5, 7, 6, 6, 7, 9, 4, 5, 9, 7, 8, 7, 9, 5, 6, 8, 7, 9, 8, 10]
 
@@ -180,4 +183,4 @@ def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     for item in lista_g: generos.append(item)
     for item in lista_1: nota_p1.append(item)
     for item in lista_2: nota_p2.append(item)
-    print("\n[INFO] Se han cargado 30 estudiantes automáticamente (Opción Hardcodeo).")
+    print("\n Se han cargado 30 estudiantes automáticamente.")
