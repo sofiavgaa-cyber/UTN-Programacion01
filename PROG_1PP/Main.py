@@ -1,6 +1,6 @@
 import FuncionesPP
 
-def menu_principal():
+def menu_principal(): # Inicia las 6 listas vacías y la bandera 
     lista_legajos = []
     lista_nombres = []
     lista_generos = []
@@ -8,9 +8,9 @@ def menu_principal():
     lista_notas_p2 = []
     lista_promedios = []
     
-    ya_hay_datos = False
+    ya_hay_datos = False # Arranca en False porque las listas están vacías
 
-    while True:
+    while True: # Bucle infinito hasta que el usuario elija salir
         print("=== MENÚ DE ESTUDIANTES ===")
         print("1 - Cargar datos manualmente")
         print("2 - Mostrar todos los alumnos")
@@ -30,7 +30,7 @@ def menu_principal():
                 continue 
                 
         if opcion == "1":
-            # Limpiamos reasignando a listas vacías
+            # Asegura que las listas estén vacías
             lista_legajos = []
             lista_nombres = []
             lista_generos = []
@@ -38,7 +38,7 @@ def menu_principal():
             lista_notas_p2 = []
             lista_promedios = []
 
-            # Carga manual alumno por alumno con las funciones correspondientes
+            # Hace un bucle para cargar 30 estudiantes
             for i in range(30):
                 print("\nCargando datos del estudiante número", i + 1)
                 
@@ -74,7 +74,7 @@ def menu_principal():
                 lista_notas_p2.append(int(n2))
 
             print("\n¡Se cargaron los 30 alumnos con éxito!")
-            ya_hay_datos = True 
+            ya_hay_datos = True # Pone la bandera en True para permitir el uso de las demás opciones
             
         elif opcion == "2":
             FuncionesPP.recorrer_y_mostrar_elementos(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2, lista_promedios)
@@ -107,7 +107,7 @@ def menu_principal():
             FuncionesPP.simular_carga_automatica(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2)
             ya_hay_datos = True 
         else:
-            print("\nOpción incorrecta. Por favor elija un número del menú.\n")
+            print("\n Opción incorrecta. Por favor elija un número del menú.\n")
 
 # Iniciamos el menú
 menu_principal()
