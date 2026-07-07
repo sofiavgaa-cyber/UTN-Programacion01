@@ -1,52 +1,52 @@
 # ==========================================
-# 1. VALIDACIONES CON LÓGICA PURA (Nota 5)
+# 1. VALIDACIONES 
 # ==========================================
 
-def validar_legajo(legajo_texto):
-    if legajo_texto == "":
+def validar_legajo(legajo):
+    if legajo == "":
         return False
         
     # Recorremos letra por letra para ver si son todos números
-    for caracter in legajo_texto:
+    for caracter in legajo:
         if caracter < "0" or caracter > "9":
             return False # Si encontramos algo que no es número, es falso
             
     # Si pasó el bucle, lo convertimos y vemos si es mayor a cero
-    legajo_entero = int(legajo_texto)
+    legajo_entero = int(legajo)
     if legajo_entero > 0:
         return True
     else:
         return False
 
-def validar_nombre(nombre_texto):
-    if nombre_texto == "":
+def validar_nombre(nombre):
+    if nombre == "":
         return False
         
     # Verificamos que sean solo letras o espacios
-    for caracter in nombre_texto:
+    for caracter in nombre:
         # Chequeamos si NO es una letra (tanto minúscula como mayúscula) y tampoco un espacio
         if not ((caracter >= "a" and caracter <= "z") or (caracter >= "A" and caracter <= "Z") or caracter == " "):
             return False
             
     return True
 
-def validar_genero(genero_texto):
+def validar_genero(genero):
     # Solo acepta las letras exactas pedidas
-    if genero_texto == "F" or genero_texto == "M" or genero_texto == "X":
+    if genero == "F" or genero == "M" or genero == "X":
         return True
     else:
         return False
 
-def validar_nota(nota_texto):
-    if nota_texto == "":
+def validar_nota(nota):
+    if nota == "":
         return False
         
     # Primero vemos si es un número entero
-    for caracter in nota_texto:
+    for caracter in nota:
         if caracter < "0" or caracter > "9":
             return False
             
-    nota_entera = int(nota_texto)
+    nota_entera = int(nota)
     if nota_entera >= 1 and nota_entera <= 10:
         return True
     else:
@@ -54,7 +54,7 @@ def validar_nota(nota_texto):
 
 
 # ==========================================
-# 2. FUNCIONES PARA MOSTRAR (Nota 6)
+# 2. FUNCIONES PARA MOSTRAR 
 # ==========================================
 
 def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio):
@@ -80,7 +80,7 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
 # ==========================================
 
 def calcular_promedios(nota_p1, nota_p2, promedios):
-    # Recreamos la lista vacía para limpiarla sin usar .clear()
+    # Recreamos la lista vacía para limpiarla 
     del promedios[:] 
     for i in range(len(nota_p1)):
         resultado = (nota_p1[i] + nota_p2[i]) / 2
@@ -89,7 +89,7 @@ def calcular_promedios(nota_p1, nota_p2, promedios):
 
 
 # ==========================================
-# 4. BURBUJEO TRADICIONAL Y BÚSQUEDAS
+# 4. ORDENAMIENTO Y BÚSQUEDA
 # ==========================================
 
 def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2, promedios):
@@ -163,7 +163,7 @@ def buscar_estudiante_por_legajo(legajos, nombres, generos, nota_p1, nota_p2, pr
 
 
 # ==========================================
-# SIMULADOR DE CARGA (Nota 0)
+# SIMULADOR DE CARGA 
 # ==========================================
 def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     # Cargamos datos uno por uno usando append común, sin usar .extend()
