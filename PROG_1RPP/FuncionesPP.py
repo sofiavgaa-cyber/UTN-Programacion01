@@ -3,6 +3,15 @@
 # ==========================================
 
 def validar_legajo(legajo):
+    """
+    Valida que el legajo ingresado sea un número entero mayor a cero.
+    
+    Parámetros:
+    legajo (str): Cadena de texto ingresada por el usuario.
+    
+    Retorna:
+    bool: True si es válido (solo números y > 0), False en caso contrario.
+    """
     if legajo == "": # Si el usuario no escribe nada, no es válido
         return False
         
@@ -19,6 +28,15 @@ def validar_legajo(legajo):
         return False
 
 def validar_nombre(nombre):
+    """
+    Valida que el nombre no esté vacío y contenga solo letras o espacios.
+    
+    Parámetros:
+    nombre (str): Cadena de texto con el nombre/apellido.
+    
+    Retorna:
+    bool: True si contiene solo letras y espacios, False de lo contrario.
+    """
     if nombre == "": # Valida que no este vacío
         return False
         
@@ -31,16 +49,31 @@ def validar_nombre(nombre):
     return True
 
 def validar_genero(genero):
-    # Convierte lo que ingresó el usuario a mayúsculas
-    genero = genero.upper()
-
+    """
+    Valida que el género ingresado sea una de las opciones permitidas (F, M o X).
+    
+    Parámetros:
+    genero (str): Carácter o texto de género ingresado.
+    
+    Retorna:
+    bool: True si coincide con 'F', 'M' o 'X' (sin importar minúsculas), False si no.
+    """
     # Solo acepta las letras exactas 
-    if genero == "F" or genero == "M" or genero == "X":
+    if genero == "F" or genero == "M" or genero == "X" or genero == "f" or genero == "m" or genero == "x":
         return True
     else:
         return False
 
 def validar_nota(nota):
+    """
+    Valida que la nota ingresada sea un número entero entre 1 y 10.
+    
+    Parámetros:
+    nota (str): Cadena de texto con la nota.
+    
+    Retorna:
+    bool: True si es un número entero entre 1 y 10, False de lo contrario.
+    """
     if nota == "": # Valida que no este vacío
         return False
         
@@ -61,12 +94,40 @@ def validar_nota(nota):
 # ==========================================
 
 def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio): # Muestra un solo estudiante, con o sin promedio
+    """"
+    Muestra la información de un solo estudiante.
+    
+    Parámetros:
+    legajo (int): Número de legajo del estudiante.
+    nombre (str): Nombre y apellido del estudiante.
+    genero (str): Género del estudiante.
+    n1 (int): Nota del primer parcial.
+    n2 (int): Nota del segundo parcial.
+    promedio (float): Promedio del estudiante.
+    
+    Retorna:
+    None: Esta función solo muestra la información y no retorna ningún valor. 
+    """
     if promedio == None: # La función recibe None si no hay promedio calculado, para no mostrarlo
         print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2)
     else: # Si hay promedio, lo muestra
         print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2, "| Promedio:", promedio)
 
 def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, promedios): # Muestra todos los estudiantes, con o sin promedio
+    """
+    Recorre las listas de estudiantes y muestra la información de cada uno.
+
+    Parámetros:
+    legajos (list): Lista de legajos de los estudiantes.
+    nombres (list): Lista de nombres de los estudiantes.
+    generos (list): Lista de géneros de los estudiantes.
+    nota_p1 (list): Lista de notas del primer parcial.
+    nota_p2 (list): Lista de notas del segundo parcial.
+    promedios (list): Lista de promedios de los estudiantes.
+
+    Retorna:
+    None: Esta función solo muestra la información y no retorna ningún valor.
+    """
     print("\n--- LISTA DE ESTUDIANTES ---")
     cantidad = len(legajos) # Averigua cuántos elementos hay en la lista de legajos (todas las listas tienen la misma cantidad)
     for i in range(cantidad): 
@@ -83,10 +144,21 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
 # ==========================================
 
 def calcular_promedios(nota_p1, nota_p2, promedios):
+    """
+    Calcula los promedios de los estudiantes a partir de sus notas del primer y segundo parcial.
+
+    Parámetros:
+    nota_p1 (list): Lista de notas del primer parcial.
+    nota_p2 (list): Lista de notas del segundo parcial.
+    promedios (list): Lista donde se almacenarán los promedios calculados.
+
+    Retorna:
+    None: Esta función solo calcula y almacena los promedios en la lista promedios.
+    """
     # Vacia la lista de promedios antes de calcularlos
     for i in range(len(nota_p1)):
         resultado = (nota_p1[i] + nota_p2[i]) / 2
-        promedios.append(resultado) # Guarda el promedio en la lista de promedios
+        promedios[i] = resultado  # Asignación algorítmica directa por índice
     print("\nPromedios calculados correctamente.")
 
 
@@ -95,6 +167,20 @@ def calcular_promedios(nota_p1, nota_p2, promedios):
 # ==========================================
 
 def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2, promedios):
+    """
+    Ordena las listas de estudiantes en orden descendente según sus promedios utilizando el algoritmo de burbuja.
+
+    Parámetros:
+    legajos (list): Lista de legajos de los estudiantes.
+    nombres (list): Lista de nombres de los estudiantes.
+    generos (list): Lista de géneros de los estudiantes.
+    nota_p1 (list): Lista de notas del primer parcial.
+    nota_p2 (list): Lista de notas del segundo parcial.
+    promedios (list): Lista de promedios de los estudiantes.
+
+    Retorna:
+    None: Esta función solo ordena las listas y no retorna ningún valor.
+    """
     n = len(promedios) # Guarda la cantidad de elementos en la lista de promedios para usarla en los bucles
     for i in range(n - 1):
         for j in range(0, n - i - 1):
@@ -128,6 +214,20 @@ def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2
     print("\nAlumnos ordenados de Mayor a Menor promedio.")
 
 def mostrar_estudiantes_con_mayor_promedio(legajos, nombres, generos, nota_p1, nota_p2, promedios):
+    """
+    Muestra los estudiantes que tienen el promedio más alto.
+
+    Parámetros:
+    legajos (list): Lista de legajos de los estudiantes.
+    nombres (list): Lista de nombres de los estudiantes.
+    generos (list): Lista de géneros de los estudiantes.
+    nota_p1 (list): Lista de notas del primer parcial.
+    nota_p2 (list): Lista de notas del segundo parcial.
+    promedios (list): Lista de promedios de los estudiantes.
+    
+    Retorna:
+    None: Esta función solo muestra la información y no retorna ningún valor.
+    """
     nota_mas_alta = promedios[0] # Inicia la variable con el primer promedio de la lista
     for p in promedios:
         if p > nota_mas_alta: # Si encuentra un promedio mayor, lo guarda en la variable
@@ -139,6 +239,20 @@ def mostrar_estudiantes_con_mayor_promedio(legajos, nombres, generos, nota_p1, n
             mostrar_un_elemento(legajos[i], nombres[i], generos[i], nota_p1[i], nota_p2[i], promedios[i])
 
 def buscar_estudiante_por_legajo(legajos, nombres, generos, nota_p1, nota_p2, promedios):
+    """
+    Busca un estudiante por su número de legajo y muestra su información si se encuentra.
+
+    Parámetros:
+    legajos (list): Lista de legajos de los estudiantes.
+    nombres (list): Lista de nombres de los estudiantes.
+    generos (list): Lista de géneros de los estudiantes.
+    nota_p1 (list): Lista de notas del primer parcial.
+    nota_p2 (list): Lista de notas del segundo parcial.
+    promedios (list): Lista de promedios de los estudiantes.
+
+    Retorna:
+    None: Esta función solo busca y muestra la información del estudiante si se encuentra, no retorna ningún valor.
+    """
     legajo_buscado = input("\nIngrese el número de legajo a buscar: ")
     
     if validar_legajo(legajo_buscado) == False:
@@ -168,8 +282,20 @@ def buscar_estudiante_por_legajo(legajos, nombres, generos, nota_p1, nota_p2, pr
 #  SIMULADOR DE CARGA 
 # ==========================================
 
-def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
-    # Lista de datos predefinidos   
+def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2): # Lista de datos predefinidos
+    """
+    Simula la carga automática de 30 estudiantes con datos predefinidos.
+
+    Parámetros:
+    legajos (list): Lista donde se almacenarán los legajos de los estudiantes.
+    nombres (list): Lista donde se almacenarán los nombres de los estudiantes.
+    generos (list): Lista donde se almacenarán los géneros de los estudiantes.
+    nota_p1 (list): Lista donde se almacenarán las notas del primer parcial.
+    nota_p2 (list): Lista donde se almacenarán las notas del segundo parcial.
+    
+    Retorna:
+    None: Esta función solo carga los datos en las listas proporcionadas y no retorna ningún valor.
+    """
     lista_l = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 11, 21, 31, 41, 51, 61, 71, 81, 91, 101, 12, 22, 32, 42, 52, 62, 72, 82, 92, 102]
     lista_n = ["Gomez Ana", "Perez Juan", "Lopez Luis", "Diaz Maria", "Paz Jose", "Soto Ines", "Rios Blas", "Vega Rosa", "Cruz Omar", "Roca Hugo",
                "Gomez Elsa", "Perez Raul", "Lopez Alan", "Diaz Sara", "Paz Abel", "Soto Cleo", "Rios Kurt", "Vega Nora", "Cruz Olga", "Roca Axel",
@@ -178,10 +304,11 @@ def simular_carga_automatica(legajos, nombres, generos, nota_p1, nota_p2):
     lista_1 = [8, 4, 7, 10, 5, 6, 9, 2, 7, 8, 4, 6, 7, 5, 8, 9, 3, 4, 10, 6, 7, 8, 9, 4, 5, 6, 7, 8, 9, 10]
     lista_2 = [9, 5, 8, 10, 6, 7, 8, 4, 8, 9, 5, 7, 6, 6, 7, 9, 4, 5, 9, 7, 8, 7, 9, 5, 6, 8, 7, 9, 8, 10]
 
-    # Pasa los datos individuales usando bucles con .append()
-    for item in lista_l: legajos.append(item) # .append agrega un elemento al final de la lista
-    for item in lista_n: nombres.append(item)
-    for item in lista_g: generos.append(item)
-    for item in lista_1: nota_p1.append(item)
-    for item in lista_2: nota_p2.append(item)
+    # Recorre por índice y asigna directamente en el espacio ya reservado
+    for i in range(30):
+        legajos[i] = lista_l[i]
+        nombres[i] = lista_n[i]
+        generos[i] = lista_g[i]
+        nota_p1[i] = lista_1[i]
+        nota_p2[i] = lista_2[i]
     print("\n Se han cargado 30 estudiantes automáticamente.")

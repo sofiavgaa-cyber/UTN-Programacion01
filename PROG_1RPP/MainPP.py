@@ -1,12 +1,17 @@
 import FuncionesPP
 
 def menu_principal(): # Inicia las 6 listas vacías y la bandera 
-    lista_legajos = []
-    lista_nombres = []
-    lista_generos = []
-    lista_notas_p1 = []
-    lista_notas_p2 = []
-    lista_promedios = []
+    """
+    Inicializa las 6 listas paralelas de datos globales y la bandera de control de carga.
+    Despliega un menú interactivo por consola que procesa las opciones elegidas por el usuario, 
+    gestionando la lógica principal del sistema.
+    """
+    lista_legajos = [None] * 30 # Inicia las listas con capacidad para 30 elementos
+    lista_nombres = [None] * 30
+    lista_generos = [None] * 30
+    lista_notas_p1 = [None] * 30
+    lista_notas_p2 = [None] * 30
+    lista_promedios = [None] * 30
     
     ya_hay_datos = False # Arranca en False porque las listas están vacías
 
@@ -31,12 +36,12 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
                 
         if opcion == "1":
             # Asegura que las listas estén vacías
-            lista_legajos = []
-            lista_nombres = []
-            lista_generos = []
-            lista_notas_p1 = []
-            lista_notas_p2 = []
-            lista_promedios = []
+            lista_legajos = [None] * 30
+            lista_nombres = [None] * 30
+            lista_generos = [None] * 30
+            lista_notas_p1 = [None] * 30
+            lista_notas_p2 = [None] * 30
+            lista_promedios = [None] * 30
 
             # Hace un bucle para cargar 30 estudiantes
             for i in range(30):
@@ -46,32 +51,32 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
                 while FuncionesPP.validar_legajo(legajo) == False:
                     print("El legajo debe ser un número entero mayor a 0.")
                     legajo = input("Ingrese Legajo nuevamente: ")
-                lista_legajos.append(int(legajo))
+                lista_legajos[i] = int(legajo) # Asignación directa por índice
                 
                 nombre = input("Ingrese Apellido y Nombre: ")
                 while FuncionesPP.validar_nombre(nombre) == False:
                     print("El nombre debe contener solo letras y espacios.")
                     nombre = input("Ingrese Apellido y Nombre nuevamente: ")
-                lista_nombres.append(nombre)
+                lista_nombres[i] = nombre 
                 
                 genero = input("Ingrese Género (F / M / X): ")
                 # Validamos pidiendo que sea exacto en mayúscula
                 while FuncionesPP.validar_genero(genero) == False:
                     print("Opciones válidas F, M o X.")
                     genero = input("Ingrese Género nuevamente: ")
-                lista_generos.append(genero)
+                lista_generos[i] = genero
                 
                 n1 = input("Ingrese Nota del Primer Parcial: ")
                 while FuncionesPP.validar_nota(n1) == False:
                     print("La nota debe ser un número entero entre 1 y 10.")
                     n1 = input("Ingrese Nota 1 nuevamente: ")
-                lista_notas_p1.append(int(n1))
+                lista_notas_p1[i] = int(n1)
                 
                 n2 = input("Ingrese Nota del Segundo Parcial: ")
                 while FuncionesPP.validar_nota(n2) == False:
                     print("La nota debe ser un número entero entre 1 y 10.")
                     n2 = input("Ingrese Nota 2 nuevamente: ")
-                lista_notas_p2.append(int(n2))
+                lista_notas_p2[i] = int(n2)
 
             print("\n¡Se cargaron los 30 alumnos con éxito!")
             ya_hay_datos = True # Pone la bandera en True para permitir el uso de las demás opciones
@@ -103,9 +108,12 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
             break 
             
         elif opcion == "0":
-            lista_legajos = []; lista_nombres = []; lista_generos = []; lista_notas_p1 = []; lista_notas_p2 = []; lista_promedios = []
-            FuncionesPP.simular_carga_automatica(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2)
-            ya_hay_datos = True 
+            lista_legajos = [None] * 30
+            lista_nombres = [None] * 30
+            lista_generos = [None] * 30
+            lista_notas_p1 = [None] * 30
+            lista_notas_p2 = [None] * 30
+            lista_promedios = [None] * 30 
         else:
             print("\n Opción incorrecta. Por favor elija un número del menú.\n")
 
