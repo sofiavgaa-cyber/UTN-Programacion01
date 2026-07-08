@@ -21,18 +21,23 @@ def menu():
         opcion = input("Seleccione una opción (0-9): ")
         
         if opcion == "1":
-            lista_estudiantes = FuncionesSP.leer_json("data_sp.json")
+            # Leemos el diccionario del archivo JSON y lo almacenamos en una variable
+            diccionario_archivo = FuncionesSP.leer_json("data_sp.json")
+            
+            # Extraemos la lista real de estudiantes usando la clave 'estudiantes'
+            lista_estudiantes = diccionario_archivo["estudiantes"]
             datos_cargados = True
             
-        elif opcion == "2":
-            FuncionesSP.cargar_estudiante_manual(lista_estudiantes)
+        elif opcion == "2": # Carga manual de datos
+            lista_estudiantes = FuncionesSP.cargar_estudiantes(lista_estudiantes)
             datos_cargados = True
             
-        elif opcion in ["3", "4", "5", "6", "7", "8", "9"]:
-            # Validación estricta de la Nota 0
-            if not datos_cargados or len(lista_estudiantes) == 0:
-                print("Error (Nota 0): No puede acceder a esta opción sin antes haber cargado datos (Opción 1 o 2).")
-            else:
+        elif opcion in ["3", "4", "5", "6", "7", "8", "9"]: 
+            # Valida que haya datos cargados antes de ejecutar estas opciones
+            if not datos_cargados or len(lista_estudiantes) == 0: 
+                # Si no hay datos cargados, muestra un mensaje de error
+                print("No puede acceder a esta opción sin antes haber cargado datos.")
+            else: # Si hay datos cargados, ejecuta la opción correspondiente
                 if opcion == "3":
                     FuncionesSP.mostrar_todos_los_elementos(lista_estudiantes)
                 elif opcion == "4":
@@ -48,11 +53,10 @@ def menu():
                 elif opcion == "9":
                     FuncionesSP.exportar_csv("data_sp.csv", lista_estudiantes)
 
-        elif opcion == "0":
-            print("Saliendo del programa. ¡Hasta luego!")
+        elif opcion == "0": 
+            print("Saliendo del programa.")
             break
         else:
             print("Opción inválida. Ingrese un número entre 0 y 9.")
 
-if __name__ == "__main__":
-    menu()
+menu()

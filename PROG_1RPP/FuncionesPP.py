@@ -119,9 +119,9 @@ def validar_genero(genero):
     genero (str): Carácter o texto de género ingresado.
     
     Retorna:
-    bool: True si coincide con 'F', 'M' o 'X' (sin importar minúsculas), False si no.
+    bool: True si coincide con 'F', 'M' o 'X', False si no.
     """
-    # Solo acepta las letras exactas 
+    # Solo acepta las letras exactas en mayuscula
     if genero == "F" or genero == "M" or genero == "X" :
         return True
     else:
@@ -202,7 +202,7 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
 
     cantidad = len(legajos) # Averigua cuántos elementos hay en la lista de legajos (todas las listas tienen la misma cantidad)
     for i in range(cantidad): 
-        # Si el legajo es None, significa que no hay alumno cargado en esta posición; nos saltamos el print
+        # Si el legajo es None, significa que no hay alumno cargado en esta posición, se salta a la siguiente iteración del bucle
         if legajos[i] is None:
             continue
         if len(promedios) == 0: # Verifica si la lista de promedios está vacía, para no mostrarla
@@ -319,8 +319,8 @@ def mostrar_estudiantes_con_mayor_promedio(legajos, nombres, generos, nota_p1, n
     Retorna:
     None: Esta función solo muestra la información y no retorna ningún valor.
     """
-    nota_mas_alta = None
-    for p in promedios:
+    nota_mas_alta = None # Inicializamos la variable para guardar el promedio más alto encontrado
+    for p in promedios: # Recorremos la lista de promedios para encontrar el primer promedio válido (no None) y lo asignamos a nota_mas_alta
         if p is not None:
             nota_mas_alta = p
             break
@@ -338,7 +338,7 @@ def mostrar_estudiantes_con_mayor_promedio(legajos, nombres, generos, nota_p1, n
             nota_mas_alta = p
             
     print("\n--- Estudiante/s con el Mayor Promedio (", nota_mas_alta, ") ---")
-    for i in range(len(promedios)):
+    for i in range(len(promedios)): # Recorre la lista de promedios para mostrar todos los estudiantes que tengan el promedio más alto
         if promedios[i] is None: 
             continue
         if promedios[i] == nota_mas_alta: # Muestra todos los estudiantes que tengan el promedio más alto
@@ -365,13 +365,13 @@ def buscar_estudiante_por_legajo(legajos, nombres, generos, nota_p1, nota_p2, pr
         print("Legajo no válido.") # Si el legajo ingresado no es válido, termina la función sin hacer nada más
         return
 
-    legajo_buscado_entero = int(legajo_buscado)
-    encontrado = False
+    legajo_buscado_entero = int(legajo_buscado) # Convertimos el legajo ingresado a entero para compararlo con los legajos en la lista
+    encontrado = False # Bandera para indicar si se encontró el estudiante o no
     
     for i in range(len(legajos)): # Recorre la lista de legajos para buscar el que coincida con el ingresado por el usuario
         if legajos[i] == legajo_buscado_entero:
             print("\n¡Estudiante encontrado!")
-            if len(promedios) == 0: 
+            if len(promedios) == 0: # Verifica si la lista de promedios está vacía, para no mostrarla
                 prom = None
             else:
                 prom = promedios[i]

@@ -1,0 +1,29 @@
+[
+    {
+        "legajo": 1,
+        "ape_nom": "Lopez Pedro",
+        "genero": "M",
+        "pp": 6,
+        "sp": 7,
+        "prom": 0,
+        "promedio": 6.5
+    },
+    {
+        "legajo": 2,
+        "ape_nom": "Perez Alba",
+        "genero": "F",
+        "pp": 9,
+        "sp": 6,
+        "prom": 0,
+        "promedio": 7.5
+    },
+    {
+        "legajo": 3,
+        "ape_nom": "Gil Ariel",
+        "genero": "X",
+        "pp": 7,
+        "sp": 6,
+        "prom": 0,
+        "promedio": 6.5
+    }
+]

@@ -47,7 +47,7 @@ def es_letra_o_espacio(cadena):
         es_espacio = (codigo == 32)
         es_tilde_o_ñ = (codigo == 241 or codigo == 209 or codigo == 225 or codigo == 233 or codigo == 237 or codigo == 243 or codigo == 250)
         
-        if not (es_letra_base or es_espacio or es_tilde_o_ñ):
+        if not (es_letra_base or es_espacio or es_tilde_o_ñ): # Si no es letra, ni espacio, ni tilde, ni ñ, retorna False
             return False
     return True
 
@@ -116,8 +116,8 @@ def validar_nota(nota_str):
     bool: True si la nota es válida, False en caso contrario.
     """
     if es_numero_entero(nota_str):
-        nota_int = int(nota_str)
-        if nota_int >= 1 and nota_int <= 10:
+        nota_int = int(nota_str) # Convertimos a entero para poder comparar
+        if nota_int >= 1 and nota_int <= 10: # Validamos que esté entre 1 y 10
             return True
     return False
 
@@ -139,11 +139,11 @@ def pedir_genero():
     entrada = input("Ingrese Género (F/M/X): ")
     genero = ""
     if len(entrada) > 0:
-        genero = convertir_a_mayuscula(entrada[0])
+        genero = convertir_a_mayuscula(entrada[0]) # Toma solo el primer carácter y lo convierte a mayúscula
         
-    while not validar_genero(genero):
+    while not validar_genero(genero): # Validamos el género ingresado
         entrada = input("Error. Ingrese Género válido (F/M/X): ")
-        if len(entrada) > 0:
+        if len(entrada) > 0: # Toma solo el primer carácter y lo convierte a mayúscula
             genero = convertir_a_mayuscula(entrada[0])
     return genero
 
@@ -157,9 +157,9 @@ def pedir_legajo():
     Retorna:
     int: El legajo ingresado y validado.
     """
-    legajo = input("Ingrese Legajo (entero): ")
-    while not validar_legajo(legajo):
-        legajo = input("Error. Ingrese un Legajo válido (solo números): ")
+    legajo = input("Ingrese Legajo: ")
+    while not validar_legajo(legajo): # Validamos que sea un número entero positivo
+        legajo = input("Error. Ingrese un Legajo válido: ")
     return int(legajo)
 
 def pedir_nombre_apellido():
@@ -173,8 +173,8 @@ def pedir_nombre_apellido():
     str: El nombre y apellido ingresados y validados.
     """
     nombre = input("Ingrese Apellido y Nombre: ")
-    while not validar_nombre_apellido(nombre):
-        nombre = input("Error. Ingrese Apellido y Nombre válido (solo letras): ")
+    while not validar_nombre_apellido(nombre): # Validamos que sea letra o espacios
+        nombre = input("Error. Ingrese Apellido y Nombre válido ")
     return nombre
 
 def pedir_nota(mensaje):
@@ -188,11 +188,11 @@ def pedir_nota(mensaje):
     int: La nota ingresada y validada.
     """ 
     nota = input(mensaje)
-    while not validar_nota(nota):
-        nota = input("Error. " + mensaje)
+    while not validar_nota(nota): # Validamos que sea un número entero entre 1 y 10
+        nota = input(mensaje) # Mostramos el mismo mensaje de solicitud en caso de error
     return int(nota)
 
-def cargar_estudiante_manual(lista_estudiantes):
+def cargar_estudiantes(lista_estudiantes):
     """
     Realiza la carga de un estudiante validando cada dato.
 
@@ -211,14 +211,15 @@ def cargar_estudiante_manual(lista_estudiantes):
     
     nuevo_estudiante = {
         "legajo": legajo,
-        "apellido_nombre": nombre,
+        "ape_nom": nombre,
         "genero": genero,
-        "nota_p1": nota_1,
-        "nota_p2": nota_2
+        "pp": nota_1,
+        "sp": nota_2
     }
-    
-    lista_estudiantes.append(nuevo_estudiante)
+    # Agregamos el nuevo estudiante a la lista de estudiantes
+    lista_estudiantes = lista_estudiantes + [nuevo_estudiante] 
     print("Estudiante cargado con éxito.")
+    return lista_estudiantes
 
 
 # ==========================================
@@ -236,21 +237,23 @@ def mostrar_un_elemento(estudiante):
     None
     """
     legajo = estudiante["legajo"]
-    nombre = estudiante["apellido_nombre"]
+    nombre = estudiante["ape_nom"]
     genero = estudiante["genero"]
-    n1 = estudiante["nota_p1"]
-    n2 = estudiante["nota_p2"]
+    n1 = estudiante["pp"]
+    n2 = estudiante["sp"]
     
-    # Comprobamos de manera simple si ya se le asignó la clave promedio
+    # Comprobamos de manera simple si ya se le asignó la clave promedio.
     if "promedio" in estudiante:
-        prom = estudiante["promedio"]
+        prom = estudiante["promedio"] 
+        # Usa los modificadores de formato f-string (como :<6 o :<20) para alinear el texto a la izquierda con un ancho fijo de caracteres. 
+        # Hace que la salida sea más legible y uniforme.
         print(f"Legajo: {legajo:<6} | Nombre: {nombre:<20} | Género: {genero} | P1: {n1:<2} | P2: {n2:<2} | Promedio: {prom:.2f}")
     else:
         print(f"Legajo: {legajo:<6} | Nombre: {nombre:<20} | Género: {genero} | P1: {n1:<2} | P2: {n2:<2} | Promedio: -")
 
 def mostrar_todos_los_elementos(lista_estudiantes):
     """
-    Recorre la lista llamando internamente a la función individual.
+    Recorre la lista completa de estudiantes y muestra los datos de cada uno.
     
     Parametros:
     lista_estudiantes (list): Lista de estudiantes a mostrar.
@@ -258,11 +261,11 @@ def mostrar_todos_los_elementos(lista_estudiantes):
     Retorna:
     None
     """
-    if len(lista_estudiantes) == 0:
+    if len(lista_estudiantes) == 0: # Si la lista está vacía, muestra el mensaje
         print("No hay estudiantes para mostrar.")
     else:
-        print("\n--- Lista de Estudiantes ---")
-        for estudiante in lista_estudiantes:
+        print("\n--- Lista de Estudiantes ---") 
+        for estudiante in lista_estudiantes: # Recorre la lista y llama a la función mostrar_un_elemento para cada estudiante
             mostrar_un_elemento(estudiante)
 
 
@@ -280,9 +283,9 @@ def calcular_todos_los_promedios(lista_estudiantes):
     Retorna:
     None
     """
-    for estudiante in lista_estudiantes:
-        n1 = estudiante["nota_p1"]
-        n2 = estudiante["nota_p2"]
+    for estudiante in lista_estudiantes: # Recorre la lista y calcula el promedio de cada estudiante
+        n1 = estudiante["pp"]
+        n2 = estudiante["sp"]
         estudiante["promedio"] = (n1 + n2) / 2
     print("Promedios calculados correctamente para todos los estudiantes.")
 
@@ -296,21 +299,22 @@ def ordenar_estudiantes_por_promedio_desc(lista_estudiantes):
     Retorna:
     None
     """
-    for estudiante in lista_estudiantes:
+    for estudiante in lista_estudiantes: # Recorre la lista y verifica si ya se calculó el promedio
         if "promedio" not in estudiante:
             print("Error: Primero debes calcular los promedios (Opción 4).")
             return
             
-    # Hacemos una copia superficial usando rebanado de lista tradicional (lista[:])
+    # Hacemos una copia de la lista para no modificar la original y aplicamos el método de ordenamiento burbuja
     lista_ordenada = lista_estudiantes[:]
     n = len(lista_ordenada)
     
     for i in range(n - 1):
         for j in range(0, n - i - 1):
-            if lista_ordenada[j]["promedio"] < lista_ordenada[j+1]["promedio"]:
-                aux = lista_ordenada[j]
+            if lista_ordenada[j]["promedio"] < lista_ordenada[j+1]["promedio"]: 
+            # Comparamos los promedios de los estudiantes
+                aux = lista_ordenada[j] # Intercambiamos los elementos si el promedio del estudiante actual es menor que el del siguiente
                 lista_ordenada[j] = lista_ordenada[j+1]
-                lista_ordenada[j+1] = aux
+                lista_ordenada[j+1] = aux 
                 
     print("\n--- Estudiantes Ordenados por Promedio (Descendente) ---")
     for estudiante in lista_ordenada:
@@ -326,20 +330,20 @@ def mostrar_mayor_promedio(lista_estudiantes):
     Retorna:
     None
     """
-    for estudiante in lista_estudiantes:
-        if "promedio" not in estudiante:
-            print("Error: Primero debes calcular los promedios (Opción 4).")
+    for estudiante in lista_estudiantes: # Recorre la lista y verifica si ya se calculó el promedio
+        if "promedio" not in estudiante: # Si no se ha calculado el promedio, muestra un mensaje de error y retorna
+            print("Primero debes calcular los promedios.")
             return
 
     # Buscar la nota máxima
-    mayor_promedio = -1.0
-    for estudiante in lista_estudiantes:
-        if estudiante["promedio"] > mayor_promedio:
+    mayor_promedio = -1.0 # Inicializamos con un valor bajo para asegurarnos de que cualquier promedio válido lo supere
+    for estudiante in lista_estudiantes: # Recorre la lista y busca el mayor promedio
+        if estudiante["promedio"] > mayor_promedio: # Actualiza el mayor promedio si encontramos uno más alto
             mayor_promedio = estudiante["promedio"]
             
     print(f"\n--- Estudiante(s) con Mayor Promedio ({mayor_promedio:.2f}) ---")
-    for estudiante in lista_estudiantes:
-        if estudiante["promedio"] == mayor_promedio:
+    for estudiante in lista_estudiantes: # Recorre la lista nuevamente y muestra todos los estudiantes que tengan el mayor promedio
+        if estudiante["promedio"] == mayor_promedio: 
             mostrar_un_elemento(estudiante)
 
 def buscar_por_legajo(lista_estudiantes):
@@ -352,17 +356,17 @@ def buscar_por_legajo(lista_estudiantes):
     Retorna:
     None
     """
-    legajo_buscar = pedir_legajo()
-    encontrado = False
+    legajo_buscar = pedir_legajo() # Pide al usuario que ingrese un legajo válido y lo valida
+    encontrado = False # Bandera para indicar si se encontró el estudiante o no
     
-    for estudiante in lista_estudiantes:
-        if estudiante["legajo"] == legajo_buscar:
+    for estudiante in lista_estudiantes: # Recorre la lista de estudiantes y compara el legajo ingresado con el legajo de cada estudiante
+        if estudiante["legajo"] == legajo_buscar: # Si encontramos un estudiante con el legajo ingresado, mostramos sus datos y cambiamos la bandera a True
             print("\nEstudiante Encontrado:")
             mostrar_un_elemento(estudiante)
-            encontrado = True
+            encontrado = True # Cambiamos la bandera a True para indicar que se encontró el estudiante
             break 
             
-    if not encontrado:
+    if not encontrado: # Si no se encontró ningún estudiante con el legajo ingresado, mostramos un mensaje indicando que no se encontró
         print(f"No se encontró ningún estudiante con el legajo {legajo_buscar}.")
 
 
@@ -380,14 +384,13 @@ def leer_json(nombre_archivo):
     Retorna:
     list: Lista de estudiantes cargada desde el archivo, o lista vacía si no existe.
     """
-    try:
-        with open(nombre_archivo, "r", encoding="utf-8") as archivo:
-            lista = json.load(archivo)
-            print(f"Datos cargados exitosamente desde {nombre_archivo}.")
-            return lista
-    except FileNotFoundError:
-        print(f"El archivo {nombre_archivo} no existe. Se iniciará con lista vacía.")
-        return []
+    # Abrimos directamente el archivo asumiendo que ya existe en el directorio
+    with open(nombre_archivo, "r", encoding="utf-8") as archivo: # UTF-8 es importante para soportar caracteres especiales como acentos y ñ
+        # Abrimos el archivo en modo lectura y con codificación UTF-8 para soportar caracteres especiales
+        lista = json.load(archivo) 
+        # El método json.load() carga el contenido del archivo JSON y lo convierte en una lista de diccionarios de Python
+        print(f"Datos cargados exitosamente desde {nombre_archivo}.")
+        return lista
 
 def exportar_json(nombre_archivo, lista_estudiantes):
     """
@@ -401,7 +404,11 @@ def exportar_json(nombre_archivo, lista_estudiantes):
     None
     """
     with open(nombre_archivo, "w", encoding="utf-8") as archivo:
+        # Whit open abre el archivo en modo escritura y con codificación UTF-8 para soportar caracteres especiales
         json.dump(lista_estudiantes, archivo, indent=4, ensure_ascii=False)
+        # .dump() convierte la lista de estudiantes en formato JSON y la escribe en el archivo, 
+        # con una indentación de 4 espacios para mejorar la legibilidad 
+        # ensure_ascii=False para permitir caracteres especiales como acentos y ñ en el archivo JSON
     print(f"Datos exportados correctamente a {nombre_archivo}.")
 
 def exportar_csv(nombre_archivo, lista_estudiantes):
@@ -415,21 +422,25 @@ def exportar_csv(nombre_archivo, lista_estudiantes):
     Retorna:
     None
     """
-    if len(lista_estudiantes) == 0:
+    if len(lista_estudiantes) == 0: # Si la lista está vacía no tiene sentido crear un archivo CSV
         print("No hay datos para exportar.")
         return
         
-    with open(nombre_archivo, "w", encoding="utf-8") as archivo:
-        archivo.write("legajo,apellido_nombre,genero,nota_p1,nota_p2,promedio\n")
+    with open(nombre_archivo, "w", encoding="utf-8") as archivo: 
+        # Abrimos el archivo en modo escritura y con codificación UTF-8 para soportar caracteres especiales
+        # Escribimos la cabecera del archivo CSV
+        archivo.write("legajo,ape_nom,genero,pp,sp,promedio\n") 
+        # archivo.write() escribe la cadena en el archivo
         
-        for est in lista_estudiantes:
+        for est in lista_estudiantes: # Recorremos la lista de estudiantes y escribimos cada uno en el archivo CSV
+            # Extraemos los datos del estudiante y los escribimos en el archivo CSV separados por comas
             legajo = est["legajo"]
-            nombre = est["apellido_nombre"]
+            nombre = est["ape_nom"]
             genero = est["genero"]
-            n1 = est["nota_p1"]
-            n2 = est["nota_p2"]
-            prom = est["promedio"] if "promedio" in est else ""
+            n1 = est["pp"]
+            n2 = est["sp"]
+            prom = est["prom"] if "prom" in est else ""
                 
             archivo.write(f"{legajo},{nombre},{genero},{n1},{n2},{prom}\n")
-            
+            # Escribimos cada estudiante en una nueva línea del archivo CSV, usando f-strings para formatear la cadena
     print(f"Datos exportados correctamente a {nombre_archivo}.")
