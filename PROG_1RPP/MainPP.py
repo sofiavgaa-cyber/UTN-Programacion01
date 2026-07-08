@@ -78,7 +78,20 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
                     n2 = input("Ingrese Nota 2 nuevamente: ")
                 lista_notas_p2[i] = int(n2)
 
-            print("\n¡Se cargaron los 30 alumnos con éxito!")
+                # Pregunta al usuario si desea cargar más estudiante
+                # Si ya cargamos el alumno 30, el bucle termina solo.
+                # Si estamos antes del alumno 30, le preguntamos si quiere seguir.
+                if i < 29:
+                    continuar = input("\n¿Desea cargar otro estudiante? (S/N): ")
+                    while continuar != "S" and continuar != "s" and continuar != "N" and continuar != "n":
+                        print("Opción inválida. Ingrese S para Sí o N para No.")
+                        continuar = input("¿Desea cargar otro estudiante? (S/N): ")
+                    
+                    # Si el usuario responde N o n, rompemos el bucle for
+                    if continuar == "N" or continuar == "n":
+                        break
+
+            print("\n¡Se cargaron los alumnos con éxito!")
             ya_hay_datos = True # Pone la bandera en True para permitir el uso de las demás opciones
             
         elif opcion == "2":

@@ -109,9 +109,11 @@ def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio): # Muestra un 
     None: Esta función solo muestra la información y no retorna ningún valor. 
     """
     if promedio == None: # La función recibe None si no hay promedio calculado, para no mostrarlo
-        print(f" {legajo:<10} | {nombre:<18} | {genero:^8} | {n1:^11} | {n2:^11}")
+        print(f" {legajo:<10} | {nombre:<18} | {genero:^8} | {n1:^11} | {n2:^11}") #Se usa f-strings con modificadores de formato para mantener la tabla alineada
     else: # Si hay promedio, lo muestra
        print(f" {legajo:<10} | {nombre:<18} | {genero:^8} | {n1:^11} | {n2:^11} | {promedio:^10}")
+    # :<10 y :<18 alinean el texto a la izquierda reservando un ancho fijo de 10 y 18 caracteres.
+    # :^11 centra el texto dentro de un espacio reservado de 11 caracteres para que coincida con los datos.
 
 def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, promedios): # Muestra todos los estudiantes, con o sin promedio
     """
