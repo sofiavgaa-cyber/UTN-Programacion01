@@ -1,23 +1,44 @@
 import json
 
 # ==========================================
-# VALIDACIONES (Nota 4)
+# VALIDACIONES 
 # ==========================================
 
 def validar_genero(genero):
-    """Valida que el género sea F, M o X."""
-    if genero == "F" or genero == "M" or genero == "X":
+    """Valida que el género sea F, M o X sin importar mayúsculas o minúsculas.
+       
+       Parametros:
+       genero (str): El género a validar.
+
+       Retorna:
+       bool: True si es válido, False en caso contrario.    
+    """
+    if genero == "F" or genero == "M" or genero == "X" or genero == "f" or genero == "m" or genero == "x":
         return True
     return False
 
 def validar_legajo(legajo_str):
-    """Valida que el legajo sea un número entero positivo."""
+    """Valida que el legajo sea un número entero positivo.
+       
+       Parametros:
+       legajo_str (str): El legajo a validar.
+
+       Retorna:
+       bool: True si es válido, False en caso contrario.
+    """
     if legajo_str.isdigit():
         return True
     return False
 
 def validar_nombre_apellido(texto):
-    """Valida que el texto no esté vacío y contenga letras o espacios."""
+    """Valida que el texto no esté vacío y contenga letras o espacios.
+       
+       Parametros:
+       texto (str): El texto a validar.
+
+       Retorna:
+       bool: True si es válido, False en caso contrario.
+    """
     if len(texto) == 0:
         return False
     for caracter in texto:
@@ -27,7 +48,14 @@ def validar_nombre_apellido(texto):
     return True
 
 def validar_nota(nota_str):
-    """Valida que la nota sea un entero entre 1 y 10."""
+    """Valida que la nota sea un entero entre 1 y 10.
+       
+       Parametros:
+       nota_str (str): La nota a validar.
+
+       Retorna:
+       bool: True si es válido, False en caso contrario.
+    """
     if nota_str.isdigit():
         nota_int = int(nota_str)
         if nota_int >= 1 and nota_int <= 10:
@@ -40,31 +68,70 @@ def validar_nota(nota_str):
 # ==========================================
 
 def pedir_genero():
-    genero = input("Ingrese Género (F/M/X): ").upper()
+    """Solicita al usuario que ingrese un género válido (F, M o X).
+    
+       Parametros:
+       None
+
+       Retorna:
+       str: El género ingresado por el usuario, en mayúscula.
+    """
+    genero = input("Ingrese Género (F/M/X): ")
     while not validar_genero(genero):
-        genero = input("Error. Ingrese Género válido (F/M/X): ").upper()
+        genero = input("Error. Ingrese Género válido (F/M/X): ")
     return genero
 
 def pedir_legajo():
+    """Solicita al usuario que ingrese un legajo válido (entero positivo).
+
+       Parametros:
+       None
+
+       Retorna:
+       int: El legajo ingresado por el usuario.
+    """
     legajo = input("Ingrese Legajo (entero): ")
     while not validar_legajo(legajo):
         legajo = input("Error. Ingrese un Legajo válido (solo números): ")
     return int(legajo)
 
 def pedir_nombre_apellido():
+    """Solicita al usuario que ingrese un nombre y apellido válido (solo letras y espacios).
+
+       Parametros:
+       None
+
+       Retorna:
+       str: El nombre y apellido ingresado por el usuario.
+    """
     nombre = input("Ingrese Apellido y Nombre: ")
     while not validar_nombre_apellido(nombre):
         nombre = input("Error. Ingrese Apellido y Nombre válido (solo letras): ")
     return nombre
 
 def pedir_nota(mensaje):
+    """Solicita al usuario que ingrese una nota válida (entero entre 1 y 10).
+
+       Parametros:
+       mensaje (str): Mensaje a mostrar al usuario para solicitar la nota.
+
+       Retorna:
+       int: La nota ingresada por el usuario.
+    """
     nota = input(mensaje)
     while not validar_nota(nota):
         nota = input("Error. " + mensaje)
     return int(nota)
 
 def cargar_estudiante_manual(lista_estudiantes):
-    """Ítem 2: Realiza la carga de un estudiante validando cada dato."""
+    """Solicita al usuario que ingrese los datos de un estudiante y lo agrega a la lista.
+
+       Parametros:
+       lista_estudiantes (list): Lista donde se almacenarán los estudiantes.
+    
+       Retorna:
+       None 
+     """
     print("\n--- Carga de Nuevo Estudiante ---")
     legajo = pedir_legajo()
     nombre = pedir_nombre_apellido()
@@ -85,11 +152,18 @@ def cargar_estudiante_manual(lista_estudiantes):
 
 
 # ==========================================
-# FUNCIONES DE MOSTRAR (Nota 5)
+# FUNCIONES DE MOSTRAR
 # ==========================================
 
 def mostrar_un_elemento(estudiante):
-    """Muestra los datos de un solo estudiante."""
+    """Muestra los datos de un solo estudiante.
+       
+       Parametros:
+       estudiante (dict): Diccionario con los datos del estudiante.
+
+       Retorna:
+       None
+    """
     legajo = estudiante["legajo"]
     nombre = estudiante["apellido_nombre"]
     genero = estudiante["genero"]
@@ -114,7 +188,7 @@ def mostrar_todos_los_elementos(lista_estudiantes):
 
 
 # ==========================================
-# LOGICA DEL NEGOCIO (Items 4, 5, 6, 7)
+# LOGICA DEL NEGOCIO 
 # ==========================================
 
 def calcular_promedio_estudiante(nota1, nota2):

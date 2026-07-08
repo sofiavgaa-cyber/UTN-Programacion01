@@ -109,9 +109,9 @@ def mostrar_un_elemento(legajo, nombre, genero, n1, n2, promedio): # Muestra un 
     None: Esta función solo muestra la información y no retorna ningún valor. 
     """
     if promedio == None: # La función recibe None si no hay promedio calculado, para no mostrarlo
-        print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2)
+        print(f" {legajo:<10} | {nombre:<18} | {genero:^8} | {n1:^11} | {n2:^11}")
     else: # Si hay promedio, lo muestra
-        print("Legajo:", legajo, "| Nombre:", nombre, "| Género:", genero, "| Parcial 1:", n1, "| Parcial 2:", n2, "| Promedio:", promedio)
+       print(f" {legajo:<10} | {nombre:<18} | {genero:^8} | {n1:^11} | {n2:^11} | {promedio:^10}")
 
 def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, promedios): # Muestra todos los estudiantes, con o sin promedio
     """
@@ -129,6 +129,12 @@ def recorrer_y_mostrar_elementos(legajos, nombres, generos, nota_p1, nota_p2, pr
     None: Esta función solo muestra la información y no retorna ningún valor.
     """
     print("\n--- LISTA DE ESTUDIANTES ---")
+    if len(promedios) == 0:
+        print(f" {'LEGAJO':<10} | {'NOMBRE Y APELLIDO':<18} | {'GÉNERO':<8} | {'PARCIAL 1':^11} | {'PARCIAL 2':^11}")
+    else:
+        print(f" {'LEGAJO':<10} | {'NOMBRE Y APELLIDO':<18} | {'GÉNERO':<8} | {'PARCIAL 1':^11} | {'PARCIAL 2':^11} | {'PROMEDIO':^10}")
+    print("-" * 78)
+
     cantidad = len(legajos) # Averigua cuántos elementos hay en la lista de legajos (todas las listas tienen la misma cantidad)
     for i in range(cantidad): 
         if len(promedios) == 0: # Verifica si la lista de promedios está vacía, para no mostrarla

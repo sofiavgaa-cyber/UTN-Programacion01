@@ -88,14 +88,15 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
             FuncionesPP.calcular_promedios(lista_notas_p1, lista_notas_p2, lista_promedios)
             
         elif opcion == "4":
-            if len(lista_promedios) == 0:
+            if lista_promedios[0] is None:
+                print("\n Primero debe calcular los promedios con la opción 3.\n")
                 print("\n Primero debe calcular los promedios con la opción 3.\n")
             else:
                 FuncionesPP.ordenar_por_promedio_descendente(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2, lista_promedios)
                 FuncionesPP.recorrer_y_mostrar_elementos(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2, lista_promedios)
                 
         elif opcion == "5":
-            if len(lista_promedios) == 0:
+            if lista_promedios[0] is None:
                 print("\n Primero debe calcular los promedios con la opción 3.\n")
             else:
                 FuncionesPP.mostrar_estudiantes_con_mayor_promedio(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2, lista_promedios)
@@ -114,6 +115,10 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
             lista_notas_p1 = [None] * 30
             lista_notas_p2 = [None] * 30
             lista_promedios = [None] * 30 
+
+            FuncionesPP.simular_carga_automatica(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2)
+            ya_hay_datos = True
+
         else:
             print("\n Opción incorrecta. Por favor elija un número del menú.\n")
 
