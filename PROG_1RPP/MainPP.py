@@ -7,7 +7,7 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
     gestionando la lógica principal del sistema.
     """
     lista_legajos = [None] * 30 # Inicia las listas con capacidad para 30 elementos
-    lista_nombres = [None] * 30
+    lista_nombres = [None] * 30 # El none permite saber si hay datos cargados o no
     lista_generos = [None] * 30
     lista_notas_p1 = [None] * 30
     lista_notas_p2 = [None] * 30
@@ -43,56 +43,8 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
             lista_notas_p2 = [None] * 30
             lista_promedios = [None] * 30
 
-            # Hace un bucle para cargar 30 estudiantes
-            for i in range(30):
-                print("\nCargando datos del estudiante número", i + 1)
-                
-                legajo = input("Ingrese Legajo: ")
-                while FuncionesPP.validar_legajo(legajo) == False:
-                    print("El legajo debe ser un número entero mayor a 0.")
-                    legajo = input("Ingrese Legajo nuevamente: ")
-                lista_legajos[i] = int(legajo) # Asignación directa por índice
-                
-                nombre = input("Ingrese Apellido y Nombre: ")
-                while FuncionesPP.validar_nombre(nombre) == False:
-                    print("El nombre debe contener solo letras y espacios.")
-                    nombre = input("Ingrese Apellido y Nombre nuevamente: ")
-                lista_nombres[i] = nombre 
-                
-                genero = input("Ingrese Género (F / M / X): ")
-                # Validamos pidiendo que sea exacto en mayúscula
-                while FuncionesPP.validar_genero(genero) == False:
-                    print("Opciones válidas F, M o X.")
-                    genero = input("Ingrese Género nuevamente: ")
-                lista_generos[i] = genero
-                
-                n1 = input("Ingrese Nota del Primer Parcial: ")
-                while FuncionesPP.validar_nota(n1) == False:
-                    print("La nota debe ser un número entero entre 1 y 10.")
-                    n1 = input("Ingrese Nota 1 nuevamente: ")
-                lista_notas_p1[i] = int(n1)
-                
-                n2 = input("Ingrese Nota del Segundo Parcial: ")
-                while FuncionesPP.validar_nota(n2) == False:
-                    print("La nota debe ser un número entero entre 1 y 10.")
-                    n2 = input("Ingrese Nota 2 nuevamente: ")
-                lista_notas_p2[i] = int(n2)
-
-                # Pregunta al usuario si desea cargar más estudiante
-                # Si ya cargamos el alumno 30, el bucle termina solo.
-                # Si estamos antes del alumno 30, le preguntamos si quiere seguir.
-                if i < 29:
-                    continuar = input("\n¿Desea cargar otro estudiante? (S/N): ")
-                    while continuar != "S" and continuar != "s" and continuar != "N" and continuar != "n":
-                        print("Opción inválida. Ingrese S para Sí o N para No.")
-                        continuar = input("¿Desea cargar otro estudiante? (S/N): ")
-                    
-                    # Si el usuario responde N o n, rompemos el bucle for
-                    if continuar == "N" or continuar == "n":
-                        break
-
-            print("\n¡Se cargaron los alumnos con éxito!")
-            ya_hay_datos = True # Pone la bandera en True para permitir el uso de las demás opciones
+            FuncionesPP.cargar_datos(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2)
+            ya_hay_datos = True
             
         elif opcion == "2":
             FuncionesPP.recorrer_y_mostrar_elementos(lista_legajos, lista_nombres, lista_generos, lista_notas_p1, lista_notas_p2, lista_promedios)
