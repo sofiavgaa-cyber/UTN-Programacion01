@@ -2,9 +2,9 @@ import FuncionesSP
 
 def menu():
     lista_estudiantes = []
-    datos_cargados = False  # Bandera de control
+    datos_cargados = False  # Bandera de control para verificar si se han cargado datos
     
-    while True:
+    while True: # Bucle infinito hasta que el usuario elija salir
         print("\n================ MENU DE OPCIONES ================")
         print("1 - Leer archivo JSON")
         print("2 - Cargar datos de estudiante manualmente")

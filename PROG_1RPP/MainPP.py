@@ -6,7 +6,7 @@ def menu_principal(): # Inicia las 6 listas vacías y la bandera
     Despliega un menú interactivo por consola que procesa las opciones elegidas por el usuario, 
     gestionando la lógica principal del sistema.
     """
-    lista_legajos = [None] * 30 # Inicia las listas con capacidad para 30 elementos
+    lista_legajos = [None] * 30 # Inicia las listas vacias con capacidad para 30 elementos
     lista_nombres = [None] * 30 # El none permite saber si hay datos cargados o no
     lista_generos = [None] * 30
     lista_notas_p1 = [None] * 30

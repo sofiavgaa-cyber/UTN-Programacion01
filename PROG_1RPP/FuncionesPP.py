@@ -263,7 +263,7 @@ def ordenar_por_promedio_descendente(legajos, nombres, generos, nota_p1, nota_p2
         for j in range(0, n - i - 1):
             # Caso 1: Si el elemento de la derecha es None, ya está en la posición correcta (abajo/al final). 
             # No hacemos nada y continuamos.
-            if promedios[j + 1] is None:
+            if promedios[j + 1] is None: 
                 continue
                 
             # Caso 2: Si el elemento actual es None pero el de la derecha tiene nota, 

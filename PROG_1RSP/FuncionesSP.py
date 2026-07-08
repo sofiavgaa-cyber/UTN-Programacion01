@@ -6,7 +6,7 @@ import json
 
 def es_numero_entero(cadena):
     """
-    Verifica si una cadena es numérica usando los valores ASCII del '0' al '9'.
+    Verifica si una cadena es numérica usando el codigo ASCII del '0' al '9'.
        
     Parametros:
     cadena (str): La cadena a validar.
@@ -37,8 +37,8 @@ def es_letra_o_espacio(cadena):
     if len(cadena) == 0:
         return False
         
-    for caracter in cadena:
-        codigo = ord(caracter)
+    for caracter in cadena: # Recorre cada caracter de la cadena
+        codigo = ord(caracter) # Obtiene el código ASCII del caracter
         # Espacio en blanco (32)
         # Mayúsculas 'A'-'Z' (65-90)
         # Minúsculas 'a'-'z' (97-122)
@@ -139,11 +139,11 @@ def pedir_genero():
     entrada = input("Ingrese Género (F/M/X): ")
     genero = ""
     if len(entrada) > 0:
-        genero = convertir_a_mayuscula(entrada[0]) # Toma solo el primer carácter y lo convierte a mayúscula
+        genero = convertir_a_mayuscula(entrada[0]) # Toma solo el primer caracter y lo convierte a mayúscula
         
     while not validar_genero(genero): # Validamos el género ingresado
         entrada = input("Error. Ingrese Género válido (F/M/X): ")
-        if len(entrada) > 0: # Toma solo el primer carácter y lo convierte a mayúscula
+        if len(entrada) > 0: 
             genero = convertir_a_mayuscula(entrada[0])
     return genero
 
@@ -244,7 +244,7 @@ def mostrar_un_elemento(estudiante):
     
     # Comprobamos de manera simple si ya se le asignó la clave promedio.
     if "promedio" in estudiante:
-        prom = estudiante["promedio"] 
+        prom = estudiante["promedio"]
         # Usa los modificadores de formato f-string (como :<6 o :<20) para alinear el texto a la izquierda con un ancho fijo de caracteres. 
         # Hace que la salida sea más legible y uniforme.
         print(f"Legajo: {legajo:<6} | Nombre: {nombre:<20} | Género: {genero} | P1: {n1:<2} | P2: {n2:<2} | Promedio: {prom:.2f}")
@@ -284,9 +284,10 @@ def calcular_todos_los_promedios(lista_estudiantes):
     None
     """
     for estudiante in lista_estudiantes: # Recorre la lista y calcula el promedio de cada estudiante
-        n1 = estudiante["pp"]
+        n1 = estudiante["pp"] # Extraemos las notas del primer y segundo parcial
         n2 = estudiante["sp"]
-        estudiante["promedio"] = (n1 + n2) / 2
+        estudiante["promedio"] = (n1 + n2) / 2 
+        # Calculamos el promedio y lo guardamos en la clave "promedio" del diccionario
     print("Promedios calculados correctamente para todos los estudiantes.")
 
 def ordenar_estudiantes_por_promedio_desc(lista_estudiantes):
@@ -301,7 +302,7 @@ def ordenar_estudiantes_por_promedio_desc(lista_estudiantes):
     """
     for estudiante in lista_estudiantes: # Recorre la lista y verifica si ya se calculó el promedio
         if "promedio" not in estudiante:
-            print("Error: Primero debes calcular los promedios (Opción 4).")
+            print("Error: Primero debes calcular los promedios.")
             return
             
     # Hacemos una copia de la lista para no modificar la original y aplicamos el método de ordenamiento burbuja
@@ -406,8 +407,8 @@ def exportar_json(nombre_archivo, lista_estudiantes):
     with open(nombre_archivo, "w", encoding="utf-8") as archivo:
         # Whit open abre el archivo en modo escritura y con codificación UTF-8 para soportar caracteres especiales
         json.dump(lista_estudiantes, archivo, indent=4, ensure_ascii=False)
-        # .dump() convierte la lista de estudiantes en formato JSON y la escribe en el archivo, 
-        # con una indentación de 4 espacios para mejorar la legibilidad 
+        # .dump() convierte la lista de estudiantes en formato JSON y la escribe en el archivo 
+        # con una indentación de 4 espacios para que sea más legible. 
         # ensure_ascii=False para permitir caracteres especiales como acentos y ñ en el archivo JSON
     print(f"Datos exportados correctamente a {nombre_archivo}.")
 
@@ -442,5 +443,7 @@ def exportar_csv(nombre_archivo, lista_estudiantes):
             prom = est["prom"] if "prom" in est else ""
                 
             archivo.write(f"{legajo},{nombre},{genero},{n1},{n2},{prom}\n")
-            # Escribimos cada estudiante en una nueva línea del archivo CSV, usando f-strings para formatear la cadena
+            # Escribimos cada estudiante en una nueva línea del archivo CSV, 
+            # usa f-strings para que los datos se escriban en el formato mas legible posible
+            # y agregamos un salto de línea al final para que cada estudiante esté en una línea
     print(f"Datos exportados correctamente a {nombre_archivo}.")
